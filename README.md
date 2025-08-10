@@ -35,7 +35,7 @@ $ git clone https://github.com/自分のアカウント名/fjord-books_app-2025.
 3. 以下の手順に従って環境セットアップを実行してください。
     1. `bundle install` を実行
     3. `rails db:reset` を実行（既存の開発用DBがある場合もいったんdropして再作成します。また、サンプルデータも自動的に作成されます）
-    4. `bundle exec rubocop` と `bundle exec erblint --lint-all` を実行して警告が出ないことを確認
+    4. `bundle exec rubocop` と `bundle exec erb_lint --lint-all` を実行して警告が出ないことを確認（ただし、parserの警告は無視してOKです）
 4. `rails s` して動作確認し、スタート地点のアプリケーション仕様を把握してください。
 5. プラクティスで指示されたコードを書いてください。
 6. ソースコードが完成したら提出前にrubocopとerblintを実行し、警告の箇所を修正してください。
