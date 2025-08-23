@@ -73,5 +73,6 @@ end
 
 gem 'carrierwave'
 gem 'devise'
-gem 'devise-i18n'
+# https://github.com/devise-i18n/devise-i18n/pull/29 がリリースされるのを待っている
+gem 'devise-i18n', github: 'devise-i18n/devise-i18n'
 gem 'kaminari'
