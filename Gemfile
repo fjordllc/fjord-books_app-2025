@@ -59,6 +59,7 @@ group :development do
   gem 'erb_lint', require: false
   gem 'faker'
   gem 'i18n_generators'
+  gem 'letter_opener_web'
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
@@ -71,4 +72,7 @@ group :test do
 end
 
 gem 'carrierwave'
+gem 'devise'
+# https://github.com/devise-i18n/devise-i18n/pull/29 がリリースされるのを待っている
+gem 'devise-i18n', github: 'devise-i18n/devise-i18n'
 gem 'kaminari'
