@@ -14,6 +14,20 @@ def picture_file(name)
   File.open(Rails.root.join("db/seeds/#{name}"))
 end
 
+def add_comments_to(commentable, contents)
+  comment_count = [*0..3].sample
+  times = Array.new(3) do
+    Faker::Time.between(from: commentable.created_at.since(10.minutes), to: commentable.created_at.since(2.days))
+  end.sort
+  users = User.all.to_a
+  comment_count.times do |n|
+    time = times[n]
+    user = users.sample
+    content = contents.sample
+    commentable.comments.create!(user:, content:, created_at: time, updated_at: time)
+  end
+end
+
 puts '実行中です。しばらくお待ちください...' # rubocop:disable Rails/Output
 
 Book.destroy_all
@@ -111,6 +125,43 @@ Report.transaction do
     content_length = [*1..3].sample
     content = contents.sample(content_length).join("\n")
     user.reports.create!(title: title, content: content, created_at: time, updated_at: time)
+  end
+end
+
+# dependent: :destroy で全件削除されているはずだが念のため
+Comment.destroy_all
+
+ApplicationRecord.transaction do # rubocop:disable Metrics/BlockLength
+  contents = <<~TEXT.lines(chomp: true)
+    これは面白そう。
+    すごく実用的！
+    画期的な内容ですね！
+    私も読んでみます。
+    ちょっと難しそうな本。
+    とてもためになりました。
+    人生について考えられました。
+    これを読めばあなたも億万長者！！
+    この作者の本はどれも面白い。
+    わかりやすかったです。
+  TEXT
+  Book.all.find_each do |book|
+    add_comments_to(book, contents)
+  end
+
+  contents = <<~TEXT.lines(chomp: true)
+    なるほど、大変そうですね。
+    わかります！！
+    あるあるですね〜。
+    一緒に頑張りましょう！
+    へ〜、そうなんですね。
+    それは意外ですw
+    私も同じです〜。
+    たしかに〜。
+    勉強になります！
+    ですよね〜。同感です。
+  TEXT
+  Report.all.find_each do |report|
+    add_comments_to(report, contents)
   end
 end
 

@@ -206,6 +206,11 @@ ja:
     menu:
       menu: メニュー
       sign_in_as: "%{user} としてログイン中"
+  application:
+    comments:
+      create: コメントする
+      delete: 削除
+      no_comments: コメントはまだありません
   # devise-i18n-viewsをオーバーライド
   devise:
     registrations:
