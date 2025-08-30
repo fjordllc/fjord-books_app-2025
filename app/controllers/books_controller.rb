@@ -28,8 +28,8 @@ class BooksController < ApplicationController
         format.html { redirect_to @book, notice: t('controllers.common.notice_create', name: Book.model_name.human) }
         format.json { render :show, status: :created, location: @book }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @book.errors, status: :unprocessable_content }
       end
     end
   end
@@ -41,8 +41,8 @@ class BooksController < ApplicationController
         format.html { redirect_to @book, notice: t('controllers.common.notice_update', name: Book.model_name.human) }
         format.json { render :show, status: :ok, location: @book }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @book.errors, status: :unprocessable_content }
       end
     end
   end

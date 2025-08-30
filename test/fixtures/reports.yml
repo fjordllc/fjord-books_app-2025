@@ -1,11 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+komagata:
+  user: komagata
+  title: 初めての日報
+  content: みなさんよろしくお願いします。
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+machida:
+  user: machida
+  title: 初めまして
+  content: がんばります。
 
-two:
-  user: two
-  title: MyString
-  content: MyText
+matz:
+  user: matz
+  title: Matzです
+  content: 名前重要。
