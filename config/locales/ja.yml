@@ -197,6 +197,12 @@ ja:
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+    pagination:
+      first: '« 最初'
+      last: '最後 »'
+      previous: '‹ 前'
+      next: '次 ›'
+      truncate: '…'
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
