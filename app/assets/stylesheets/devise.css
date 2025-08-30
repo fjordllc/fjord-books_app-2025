@@ -32,7 +32,7 @@ Devise
 
 #error_explanation h2 {
   font-size: var(--global-fz-md);
-  line-height: var(--global-headding-lh);
+  line-height: var(--global-heading-lh);
   margin: 0;
 }
 
