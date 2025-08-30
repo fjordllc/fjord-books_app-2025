@@ -94,7 +94,7 @@ Common
   /* text */
   --global-c: #444444;
   --global-title-fz: 24px;
-  --global-headding-lh: 1.5;
+  --global-heading-lh: 1.5;
   --global-fz-md: 14px;
   --global-fz-sm: 12px;
   --global-label-fz: .9em;
@@ -120,13 +120,13 @@ Common
 h1,
 h2 {
   font-size: var(--global-title-fz);
-  line-height: var(--global-headding-lh);
+  line-height: var(--global-heading-lh);
   margin: 1em 0;
 }
 
 h3 {
   font-size: var(--global-fz-md);
-  line-height: var(--global-headding-lh);
+  line-height: var(--global-heading-lh);
   margin: 1em 0;
 }
 
