@@ -30,7 +30,8 @@ menu-container
   margin-left: 32px;
 }
 
-.menu-container li a {
+.menu-container li a,
+.menu-container li .button_to button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,6 +43,11 @@ menu-container
   text-align: center;
   text-decoration: none;
   color: var(--global-c);
+}
+
+.menu-container li .button_to button {
+  border: none;
+  height: 100%;
 }
 
 .menu-container li a:hover {
