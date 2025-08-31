@@ -52,6 +52,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
 
+  gem 'dotenv-rails'
   gem 'rubocop-fjord', require: false
 end
 
@@ -75,4 +76,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
 gem 'kaminari'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'rails_autolink'
