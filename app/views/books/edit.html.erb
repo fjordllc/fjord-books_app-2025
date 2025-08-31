@@ -1,6 +1,7 @@
-<% content_for :title, "Editing book" %>
+<% title = t('views.common.title_edit', name: Book.model_name.human.downcase) %>
+<% content_for :title, title %>
 
-<h1><%= t('views.common.title_edit', name: Book.model_name.human.downcase) %></h1>
+<h1><%= title %></h1>
 
 <%= render "form", book: @book %>
 
