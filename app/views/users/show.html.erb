@@ -1,5 +1,11 @@
 <h1><%= t('views.common.title_show', name: User.model_name.human) %></h1>
 
+<% if @user.user_icon.attached? %>
+  <%= image_tag @user.user_icon.variant(resize_to_limit: [100, 100]), class: 'user-icon' %>
+<% else %>
+  <p>アイコン画像なし</p>
+<% end %>
+
 <div class="show-item">
   <%= render @user %>
 </div>
