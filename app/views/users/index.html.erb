@@ -3,6 +3,11 @@
 <div id="users" class="index-items">
   <% @users.each do |user| %>
     <div class="index-item">
+      <div class="user-icon-list" style="margin-bottom: 10px;">
+        <% if user.user_icon.attached? %>
+          <%= image_tag user.user_icon.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+      </div>
       <%= render user %>
       <p>
         <%= link_to t('views.common.show', name: User.model_name.human.downcase), user %>
