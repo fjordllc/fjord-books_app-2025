@@ -10,8 +10,8 @@ class User < ApplicationRecord
 
   def user_icon_type
     return unless user_icon.attached?
-    unless user_icon.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
-      errors.add(:user_icon, 'の形式が不正です（jpg, png, gifのみアップロード可能です）')
-    end
+    return if user_icon.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
+
+    errors.add(:user_icon, 'の形式が不正です（jpg, png, gifのみアップロード可能です）')
   end
 end
