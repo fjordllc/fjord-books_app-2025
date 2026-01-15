@@ -3,14 +3,14 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
-
+  around_action :set_time_zone, if: :current_user
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
   def configure_permitted_parameters
-    keys = %i[name postal_code address self_introduction avatar]
+    keys = %i[name postal_code address self_introduction avatar time_zone]
     devise_parameter_sanitizer.permit(:sign_up, keys:)
     devise_parameter_sanitizer.permit(:account_update, keys:)
   end
@@ -27,5 +27,9 @@ class ApplicationController < ActionController::Base
 
   def signed_in_root_path(_resource_or_scope)
     user_path(current_user)
+  end
+
+  def set_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
   end
 end

@@ -1,6 +1,7 @@
 <div id="<%= dom_id comment %>">
     <div class='show-item'>
         <p><strong><%= link_to comment.user.name, comment.user %></strong></p>
+        <%= l comment.created_at, format: :long %>
         <p><%= comment.body %></p>
     </div>
 </div>
