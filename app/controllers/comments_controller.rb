@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  before_action :set_commentable, only: %i[create destroy]
   before_action :set_comment, only: %i[show edit update destroy]
-  before_action :set_commentable, only: %i[create]
 
   def show; end
 
@@ -14,14 +14,21 @@ class CommentsController < ApplicationController
 
   def update; end
 
-  def destroy; end
-
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
     @comment.save!
 
     redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
+  end
+
+  def destroy
+    if @comment.user == current_user
+      @comment.destroy!
+      redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
+    else
+      redirect_to @commentable, alert: t('errors.messages.unauthorized')
+    end
   end
 
   private
@@ -31,7 +38,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @comment = @commentable.find(params.expect(:id))
+    @comment = @commentable.comments.find(params.expect(:id))
   end
 
   def set_commentable
