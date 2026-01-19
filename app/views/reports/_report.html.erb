@@ -1,7 +1,14 @@
 <div id="<%= dom_id report %>">
 
   <p>
-    <strong><%= link_to report.user.name.presence || report.user.email, report.user %></strong>
+    <strong><%= User.model_name.human %>:</strong>
+    <%= link_to report.user.name.presence || report.user.email, report.user %>
+  </p>
+
+  <p>
+    <time>
+      <%= l report.created_at, format: :long %>
+    </time>
   </p>
 
   <p>
