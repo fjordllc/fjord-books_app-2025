@@ -1,0 +1,7 @@
+<div>
+    <% if comments.any? %>
+        <%= render comments %>
+    <% else %>
+        <p><%= t('views.common.empty_state', name: Comment.model_name.human.downcase)%></p>
+    <% end %>
+</div>

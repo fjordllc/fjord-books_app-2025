@@ -5,7 +5,7 @@
 </div>
 
 <h2><%= Comment.model_name.human %></h2>
-<%= render @book.comments %>
+<%= render "comments/list", comments: @book.comments %>
 <%= render "comments/form", commentable: @book, comment: @comment %>
 
 <nav class="page-nav">

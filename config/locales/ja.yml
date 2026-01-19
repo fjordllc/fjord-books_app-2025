@@ -200,6 +200,7 @@ ja:
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+      empty_state: "まだ%{name}はありません"
     pagination:
       first: '« 最初'
       last: '最後 »'
@@ -215,6 +216,10 @@ ja:
     application:
       menu: メニュー
       sign_in_as: "%{user} としてログイン中"
+  common:
+    empty_state: 
+      comments: まだコメントはありません
+
   # devise-i18n-viewsをオーバーライド
   devise:
     registrations:
