@@ -1,9 +1,18 @@
 <div id="<%= dom_id comment %>">
     <div class='show-item'>
         <%# user.name is not a required field on sign-up %>
-        <p><strong><%= link_to comment.user.name.presence || comment.user.email, comment.user %></strong></p>
-        <%= l comment.created_at, format: :long %>
-        <p><%= comment.body %></p>
+        <p>
+            <strong><%= link_to comment.user.name.presence || comment.user.email, comment.user %></strong>
+        </p>
+
+        <p>
+            <time><%= l comment.created_at, format: :long %></time>
+        </p>
+
+        <p>
+            <%= comment.body %>
+        </p>
+        
         <% if current_user == comment.user %>
             <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]), method: :delete %>
         <% end %>
