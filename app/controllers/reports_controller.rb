@@ -49,12 +49,11 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    @report.destroy!
+    authorize_user!(@report)
+    return if performed?
 
-    respond_to do |format|
-      format.html { redirect_to reports_path, status: :see_other, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) }
-      format.json { head :no_content }
-    end
+    @report.destroy!
+    redirect_to reports_path, status: :see_other, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   end
 
   private

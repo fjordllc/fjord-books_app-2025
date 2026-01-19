@@ -32,4 +32,10 @@ class ApplicationController < ActionController::Base
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
   end
+
+  def authorize_user!(record)
+    return if record.user == current_user
+
+    redirect_to root_path, alert: t('errors.messages.unauthorized')
+  end
 end
