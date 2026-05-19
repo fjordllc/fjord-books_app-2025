@@ -4,6 +4,7 @@
   <%= render @report %>
 </div>
 
+<%= render 'application/mentioned_reports', mentioned_reports: @report.mentioned_reports %>
 <%= render 'application/comments', commentable: @report %>
 
 <nav class="page-nav">
