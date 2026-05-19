@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  report: one
+  mentioned_report: one
+
+two:
+  report: two
+  mentioned_report: two
