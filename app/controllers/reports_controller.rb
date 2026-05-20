@@ -21,15 +21,10 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.new(report_params)
-    if @report.content.include?('http://localhost:3000/reports/')
-      report_ids = report_ids_from_content(@report.content)
-
-      report_ids.each do |mentioned_report_id|
-        @report.report_mentions.build(mentioned_report_id: mentioned_report_id) if Report.exists?(mentioned_report_id)
-      end
-    end
 
     if @report.save
+      sync_report_mentions!
+
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
@@ -38,6 +33,8 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
+      sync_report_mentions!
+
       redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
       render :edit, status: :unprocessable_entity
@@ -60,7 +57,19 @@ class ReportsController < ApplicationController
     params.expect(report: %i[user_id title content])
   end
 
+  def sync_report_mentions!
+    mentioned_report_ids = report_ids_from_content(@report.content)
+
+    @report.report_mentions.destroy_all
+
+    mentioned_report_ids.each do |mentioned_report_id|
+      next unless Report.exists?(id: mentioned_report_id)
+
+      @report.report_mentions.create!(mentioned_report_id: mentioned_report_id)
+    end
+  end
+
   def report_ids_from_content(content)
-    content.scan(%r{/reports/(\d+)}).flatten.map(&:to_i).uniq 
+    content.scan(%r{/reports/(\d+)}).flatten.map(&:to_i).uniq
   end
 end
