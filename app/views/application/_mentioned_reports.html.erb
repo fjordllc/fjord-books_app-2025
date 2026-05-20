@@ -1,11 +1,7 @@
 <div class="mentioned-reports">
   <strong><%= Report.model_name.human %>:</strong>
   <ul>
-    <% if mentioned_reports.blank? %>
-      <li><%= t('views.reports.no_mentioned_reports') %></li>
-    <% else %>
       <% mentioned_reports.each do |report| %>
         <li><%= link_to report.title, report %></li>
-      <% end %>
     <% end %>
 </div>

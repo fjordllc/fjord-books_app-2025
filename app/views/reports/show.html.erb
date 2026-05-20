@@ -4,7 +4,9 @@
   <%= render @report %>
 </div>
 
+<% if !@report.mentioned_reports.blank? %>
 <%= render 'application/mentioned_reports', mentioned_reports: @report.mentioned_reports %>
+<% end %>
 <%= render 'application/comments', commentable: @report %>
 
 <nav class="page-nav">
